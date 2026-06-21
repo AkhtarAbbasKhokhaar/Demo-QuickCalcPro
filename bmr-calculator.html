@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMR Calculator | Basal Metabolic Rate Calorie Intake | QuickCalcPro</title>
+    <meta name="description" content="Calculate your Basal Metabolic Rate (BMR) with our free offline calorie calculator using Mifflin-St Jeor formulas. Plan nutrition budgets perfectly." />
+    <link rel="canonical" href="http://quickcalcpro.gt.tc/bmr-calculator" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: { extend: { fontFamily: { sans: ['Jost', 'sans-serif'] } } }
+      }
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+    
+    <!-- HEADER -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center space-x-2.5 group">
+          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:bg-blue-700 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-slate-900 tracking-tight">QuickCalc<span class="text-blue-600">Pro</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="/" class="text-slate-600 hover:text-blue-600 transition">Home</a>
+          
+          <!-- Dropdown container -->
+          <div class="relative" id="tools-dropdown-btn">
+            <button class="text-slate-600 hover:text-slate-900 transition flex items-center space-x-1 focus:outline-none">
+              <span>Tools</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-slate-100 p-2 hidden z-50 text-slate-700" id="tools-dropdown">
+              <div class="px-3 py-1.5 text-xs font-semibold text-slate-400 tracking-wider uppercase">Categories</div>
+              <a href="/emi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">EMI Calculator</a>
+              <a href="/loan-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Loan Calculator</a>
+              <a href="/gst-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">GST Calculator</a>
+              <a href="/bmi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMI Calculator</a>
+              <a href="/bmr-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMR Calculator</a>
+              <a href="/calorie-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Calorie Calculator</a>
+              <a href="/percentage-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Percentage Calculator</a>
+              <a href="/scientific-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Scientific Calculator</a>
+              <a href="/currency-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Currency Converter</a>
+              <a href="/unit-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Unit Converter</a>
+            </div>
+          </div>
+
+          <a href="/tools" class="text-slate-600 hover:text-slate-900 transition">Categories</a>
+          <a href="/about" class="text-slate-600 hover:text-slate-950 transition">About</a>
+          <a href="/contact" class="text-slate-600 hover:text-blue-600 transition">Contact</a>
+        </nav>
+
+        <!-- CTA/PWA -->
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="/tools" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition shadow-sm">Explore All Tools</a>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-slate-900 focus:outline-none p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
+        <div class="px-4 py-3 space-y-2.5 text-base font-medium">
+          <a href="/" class="block text-slate-600 py-1">Home</a>
+          <button id="mobile-tools-btn" class="w-full text-left py-1 text-slate-600 flex items-center justify-between">
+            <span>Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div id="mobile-tools-dropdown" class="hidden pl-4 space-y-1 text-sm bg-slate-50 rounded-md p-1.5 text-slate-650">
+            <a href="/emi-calculator" class="block py-1">EMI Calculator</a>
+            <a href="/loan-calculator" class="block py-1">Loan Calculator</a>
+            <a href="/gst-calculator" class="block py-1">GST Calculator</a>
+            <a href="/bmi-calculator" class="block py-1">BMI Calculator</a>
+            <a href="/bmr-calculator" class="block py-1">BMR Calculator</a>
+            <a href="/calorie-calculator" class="block py-1">Calorie Calculator</a>
+            <a href="/percentage-calculator" class="block py-1">Percentage Calculator</a>
+            <a href="/scientific-calculator" class="block py-1">Scientific Calculator</a>
+            <a href="/currency-converter" class="block py-1">Currency Converter</a>
+            <a href="/unit-converter" class="block py-1">Unit Converter</a>
+          </div>
+          <a href="/tools" class="block text-slate-600 py-1">Categories</a>
+          <a href="/about" class="block text-slate-600 py-1">About</a>
+          <a href="/contact" class="block text-slate-600 py-1">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <nav class="flex text-xs text-slate-400 mb-6 font-medium">
+        <ol class="inline-flex items-center space-x-1">
+          <li><a href="/" class="hover:text-blue-600 transition">Home</a></li>
+          <li><span class="text-slate-300 mx-1">/</span><a href="/tools" class="hover:text-blue-600 transition">Tools Directory</a></li>
+          <li><span class="text-slate-300 mx-1">/</span><span class="text-slate-500">BMR Calculator</span></li>
+        </ol>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-5">
+          <h2 class="text-lg font-bold text-slate-900 border-b pb-3 mb-4">Metabolic Settings</h2>
+          
+          <div>
+            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">Biological Sex</label>
+            <div class="grid grid-cols-2 gap-2 bg-slate-50 p-1 rounded-lg">
+              <button id="bmr-male" class="py-2.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-sm transition">Male</button>
+              <button id="bmr-female" class="py-2.5 text-xs font-bold rounded-lg text-slate-650 hover:bg-slate-100 transition">Female</button>
+            </div>
+          </div>
+
+          <!-- Age -->
+          <div>
+            <label class="text-xs font-bold text-slate-400 uppercase block mb-2">Age (Years)</label>
+            <input type="number" id="bmr-age" value="25" class="p-3 bg-slate-50 border rounded-lg w-full font-bold text-slate-900 outline-none text-sm" />
+          </div>
+
+          <!-- Weight -->
+          <div>
+            <label class="text-xs font-bold text-slate-400 uppercase block mb-2">Weight (kg)</label>
+            <input type="number" id="bmr-weight" value="70" class="p-3 bg-slate-50 border rounded-lg w-full font-bold text-slate-900 outline-none text-sm" />
+          </div>
+
+          <!-- Height -->
+          <div>
+            <label class="text-xs font-bold text-slate-400 uppercase block mb-2">Height (cm)</label>
+            <input type="number" id="bmr-height" value="175" class="p-3 bg-slate-50 border rounded-lg w-full font-bold text-slate-900 outline-none text-sm" />
+          </div>
+
+          <button id="bmr-calc-btn" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">Analyze Metabolic Baseline</button>
+        </div>
+
+        <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 border-b pb-3 mb-6">Basal Metabolism Results</h2>
+            <div class="bg-blue-50/40 p-6 rounded-2xl border border-blue-50 text-center mb-6">
+              <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">Mifflin-St Jeor baseline metabolic speed</span>
+              <div class="text-4xl font-extrabold text-blue-600 mt-2" id="out-bmr">1,658 kcal</div>
+              <p class="text-xs text-slate-505 text-slate-500 mt-2">Required calories daily resting at complete absolute immobility.</p>
+            </div>
+
+            <div class="space-y-3">
+              <span class="text-xs font-bold uppercase text-slate-400 block tracking-widest">Calculated Activity Multipliers</span>
+              <div class="divide-y text-xs text-slate-700">
+                <div class="py-2.5 flex justify-between">
+                  <span>Sedentary (No sports / desk job):</span>
+                  <span class="font-bold text-slate-950" id="bmr-sed">1,990 kcal</span>
+                </div>
+                <div class="py-2.5 flex justify-between">
+                  <span>Lightly Active (1-3 sessions sports/week):</span>
+                  <span class="font-bold text-slate-950" id="bmr-light">2,279 kcal</span>
+                </div>
+                <div class="py-2.5 flex justify-between">
+                  <span>Moderately Active (3-5 sessions sports/week):</span>
+                  <span class="font-bold text-slate-950" id="bmr-mod">2,570 kcal</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-sm py-8 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        © 2026 QuickCalcPro. All Rights Reserved. Canonical URL: <a href="http://quickcalcpro.gt.tc/" class="text-blue-500 hover:underline">http://quickcalcpro.gt.tc/</a>
+      </div>
+    </footer>
+
+    <script src="/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let biologicalSex = "male";
+        const maleBtn = document.getElementById("bmr-male");
+        const femaleBtn = document.getElementById("bmr-female");
+
+        maleBtn.addEventListener("click", () => {
+          biologicalSex = "male";
+          maleBtn.className = "py-2.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-sm transition";
+          femaleBtn.className = "py-2.5 text-xs font-bold rounded-lg text-slate-650 hover:bg-slate-100 transition";
+          calculateBMR();
+        });
+
+        femaleBtn.addEventListener("click", () => {
+          biologicalSex = "female";
+          femaleBtn.className = "py-2.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-sm transition";
+          maleBtn.className = "py-2.5 text-xs font-bold rounded-lg text-slate-650 hover:bg-slate-100 transition";
+          calculateBMR();
+        });
+
+        function calculateBMR() {
+          let age = parseFloat(document.getElementById("bmr-age").value) || 0;
+          let weight = parseFloat(document.getElementById("bmr-weight").value) || 0;
+          let height = parseFloat(document.getElementById("bmr-height").value) || 0;
+
+          if (age <= 0 || weight <= 0 || height <= 0) return;
+
+          // Mifflin-St Jeor equation:
+          // Men: BMR = 10W + 6.25H - 5A + 5
+          // Women: BMR = 10W + 6.25H - 5A - 161
+          let bmr = (10 * weight) + (6.25 * height) - (5 * age);
+          if (biologicalSex === "male") {
+            bmr += 5;
+          } else {
+            bmr -= 161;
+          }
+
+          document.getElementById("out-bmr").innerText = Math.round(bmr).toLocaleString() + " kcal";
+          document.getElementById("bmr-sed").innerText = Math.round(bmr * 1.2).toLocaleString() + " kcal";
+          document.getElementById("bmr-light").innerText = Math.round(bmr * 1.375).toLocaleString() + " kcal";
+          document.getElementById("bmr-mod").innerText = Math.round(bmr * 1.55).toLocaleString() + " kcal";
+        }
+
+        document.getElementById("bmr-calc-btn").addEventListener("click", calculateBMR);
+        calculateBMR();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unit Converter | Free Length Weight Temperature Conversion | QuickCalcPro</title>
+    <meta name="description" content="Switch easily between imperial systems and metric standards for length, yards, weight pounds, and temperatures offline with QuickCalcPro." />
+    <link rel="canonical" href="http://quickcalcpro.gt.tc/unit-converter" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: { extend: { fontFamily: { sans: ['Jost', 'sans-serif'] } } }
+      }
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+    
+    <!-- HEADER -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center space-x-2.5 group">
+          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:bg-blue-700 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-slate-900 tracking-tight">QuickCalc<span class="text-blue-600">Pro</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="/" class="text-slate-600 hover:text-blue-600 transition">Home</a>
+          
+          <!-- Dropdown container -->
+          <div class="relative" id="tools-dropdown-btn">
+            <button class="text-slate-600 hover:text-slate-900 transition flex items-center space-x-1 focus:outline-none">
+              <span>Tools</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-slate-100 p-2 hidden z-50 text-slate-700" id="tools-dropdown">
+              <div class="px-3 py-1.5 text-xs font-semibold text-slate-400 tracking-wider uppercase">Categories</div>
+              <a href="/emi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">EMI Calculator</a>
+              <a href="/loan-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Loan Calculator</a>
+              <a href="/gst-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">GST Calculator</a>
+              <a href="/bmi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMI Calculator</a>
+              <a href="/bmr-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMR Calculator</a>
+              <a href="/calorie-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Calorie Calculator</a>
+              <a href="/percentage-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Percentage Calculator</a>
+              <a href="/scientific-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Scientific Calculator</a>
+              <a href="/currency-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Currency Converter</a>
+              <a href="/unit-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Unit Converter</a>
+            </div>
+          </div>
+
+          <a href="/tools" class="text-slate-600 hover:text-slate-900 transition">Categories</a>
+          <a href="/about" class="text-slate-600 hover:text-slate-950 transition">About</a>
+          <a href="/contact" class="text-slate-600 hover:text-blue-600 transition">Contact</a>
+        </nav>
+
+        <!-- CTA/PWA -->
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="/tools" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition shadow-sm">Explore All Tools</a>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-slate-900 focus:outline-none p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
+        <div class="px-4 py-3 space-y-2.5 text-base font-medium">
+          <a href="/" class="block text-slate-600 py-1">Home</a>
+          <button id="mobile-tools-btn" class="w-full text-left py-1 text-slate-600 flex items-center justify-between">
+            <span>Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div id="mobile-tools-dropdown" class="hidden pl-4 space-y-1 text-sm bg-slate-50 rounded-md p-1.5 text-slate-650">
+            <a href="/emi-calculator" class="block py-1">EMI Calculator</a>
+            <a href="/loan-calculator" class="block py-1">Loan Calculator</a>
+            <a href="/gst-calculator" class="block py-1">GST Calculator</a>
+            <a href="/bmi-calculator" class="block py-1">BMI Calculator</a>
+            <a href="/bmr-calculator" class="block py-1">BMR Calculator</a>
+            <a href="/calorie-calculator" class="block py-1">Calorie Calculator</a>
+            <a href="/percentage-calculator" class="block py-1">Percentage Calculator</a>
+            <a href="/scientific-calculator" class="block py-1">Scientific Calculator</a>
+            <a href="/currency-converter" class="block py-1">Currency Converter</a>
+            <a href="/unit-converter" class="block py-1">Unit Converter</a>
+          </div>
+          <a href="/tools" class="block text-slate-600 py-1">Categories</a>
+          <a href="/about" class="block text-slate-600 py-1">About</a>
+          <a href="/contact" class="block text-slate-600 py-1">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      <nav class="flex text-xs text-slate-400 mb-6 font-medium">
+        <ol class="inline-flex items-center space-x-1">
+          <li><a href="/" class="hover:text-blue-600 transition">Home</a></li>
+          <li><span class="text-slate-300 mx-1">/</span><a href="/tools" class="hover:text-blue-600 transition">Tools Directory</a></li>
+          <li><span class="text-slate-300 mx-1">/</span><span class="text-slate-500">Unit Converter</span></li>
+        </ol>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-5">
+          <h2 class="text-lg font-bold text-slate-900 border-b pb-3 mb-4">Conversion variables</h2>
+          
+          <!-- Category selector -->
+          <div>
+            <label class="text-xs font-bold text-slate-450 text-slate-400 block mb-2 uppercase tracking-widest">Dimension category</label>
+            <select id="unit-cat" class="p-3 bg-slate-50 border rounded-lg w-full font-bold text-slate-800 text-sm outline-none">
+              <option value="length" selected>Length / Distance</option>
+              <option value="weight">Weight / Mass</option>
+              <option value="temperature">Temperature</option>
+            </select>
+          </div>
+
+          <!-- Base input -->
+          <div>
+            <label class="text-xs font-bold text-slate-455 text-slate-400 block mb-2 uppercase">Input Value</label>
+            <input type="number" id="unit-input-val" value="1" class="p-3 bg-slate-50 border rounded-lg w-full font-bold text-slate-900 text-sm outline-none" />
+          </div>
+
+          <!-- Unit options -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-xs text-slate-400 block mb-2 uppercase font-bold">From</label>
+              <select id="unit-from-type" class="p-3 bg-white border rounded-lg w-full text-xs font-bold text-slate-700 outline-none"></select>
+            </div>
+            <div>
+              <label class="text-xs text-slate-400 block mb-2 uppercase font-bold">To</label>
+              <select id="unit-to-type" class="p-3 bg-white border rounded-lg w-full text-xs font-bold text-slate-700 outline-none"></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900 border-b pb-3 mb-6">Aggregate Unit Result</h2>
+            <div class="bg-emerald-50/50 p-8 rounded-2xl border border-emerald-50 text-center">
+              <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">Converted Equivalent</span>
+              <div class="text-4xl font-extrabold text-emerald-600 mt-2" id="out-unit-result">1,000 meters</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-sm py-8 border-t border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        © 2026 QuickCalcPro. All Rights Reserved. Canonical URL: <a href="http://quickcalcpro.gt.tc/" class="text-blue-500 hover:underline">http://quickcalcpro.gt.tc/</a>
+      </div>
+    </footer>
+
+    <script src="/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const catSelect = document.getElementById("unit-cat");
+        const valInput = document.getElementById("unit-input-val");
+        const fromSelect = document.getElementById("unit-from-type");
+        const toSelect = document.getElementById("unit-to-type");
+        const outScreen = document.getElementById("out-unit-result");
+
+        const options = {
+          length: {
+            m: { label: "Meters (m)", factor: 1 },
+            km: { label: "Kilometers (km)", factor: 1000 },
+            in: { label: "Inches (in)", factor: 0.0254 },
+            ft: { label: "Feet (ft)", factor: 0.3048 },
+            yd: { label: "Yards (yd)", factor: 0.9144 },
+            mi: { label: "Miles (mi)", factor: 1609.34 }
+          },
+          weight: {
+            g: { label: "Grams (g)", factor: 1 },
+            kg: { label: "Kilograms (kg)", factor: 1000 },
+            lb: { label: "Pounds (lb)", factor: 453.592 },
+            oz: { label: "Ounces (oz)", factor: 28.3495 }
+          },
+          temperature: {
+            c: { label: "Celsius (°C)" },
+            f: { label: "Fahrenheit (°F)" },
+            k: { label: "Kelvin (K)" }
+          }
+        };
+
+        function resetSelectors() {
+          const cat = catSelect.value;
+          let html = "";
+          Object.keys(options[cat]).forEach(key => {
+            html += `<option value="${key}">${options[cat][key].label}</option>`;
+          });
+          fromSelect.innerHTML = html;
+          toSelect.innerHTML = html;
+
+          // Default specific combinations
+          if (cat === "length") {
+            fromSelect.value = "km";
+            toSelect.value = "m";
+          } else if (cat === "weight") {
+            fromSelect.value = "kg";
+            toSelect.value = "lb";
+          } else if (cat === "temperature") {
+            fromSelect.value = "c";
+            toSelect.value = "f";
+          }
+          performConversion();
+        }
+
+        function performConversion() {
+          const cat = catSelect.value;
+          const fromIdx = fromSelect.value;
+          const toIdx = toSelect.value;
+          const val = parseFloat(valInput.value) || 0;
+
+          if (!fromIdx || !toIdx) return;
+
+          let converted = 0;
+
+          if (cat === "temperature") {
+            if (fromIdx === toIdx) {
+              converted = val;
+            } else if (fromIdx === "c" && toIdx === "f") {
+              converted = (val * 9/5) + 32;
+            } else if (fromIdx === "c" && toIdx === "k") {
+              converted = val + 273.15;
+            } else if (fromIdx === "f" && toIdx === "c") {
+              converted = (val - 32) * 5/9;
+            } else if (fromIdx === "f" && toIdx === "k") {
+              converted = ((val - 32) * 5/9) + 273.15;
+            } else if (fromIdx === "k" && toIdx === "c") {
+              converted = val - 273.15;
+            } else if (fromIdx === "k" && toIdx === "f") {
+              converted = ((val - 273.15) * 9/5) + 32;
+            }
+          } else {
+            // Absolute factors relative to base standard metric multipliers
+            const fromFactor = options[cat][fromIdx].factor;
+            const toFactor = options[cat][toIdx].factor;
+            converted = val * (fromFactor / toFactor);
+          }
+
+          outScreen.innerText = converted.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 5}) + " " + toIdx;
+        }
+
+        catSelect.addEventListener("change", resetSelectors);
+        valInput.addEventListener("input", performConversion);
+        fromSelect.addEventListener("change", performConversion);
+        toSelect.addEventListener("change", performConversion);
+
+        resetSelectors();
+      });
+    </script>
+  </body>
+</html>

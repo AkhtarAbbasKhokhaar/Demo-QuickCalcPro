@@ -1,0 +1,27 @@
+# Apache/InfinityFree Hosting Configuration for QuickCalcPro
+# Implements clean SEO URLs: /tools maps to /tools.html, etc.
+
+RewriteEngine On
+RewriteBase /
+
+# Protect .htaccess from direct web access
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+# Disable directory browsing
+Options -Indexes
+
+# If a file exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Resolve clean SEO-friendly URLs to HTML files
+# e.g., /tools -> /tools.html, /about -> /about.html
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)$ $1.html [NC,L]
+
+# Handle 404 - Redirect gracefully back to homepage or serve a 404 page
+ErrorDocument 404 /index.html

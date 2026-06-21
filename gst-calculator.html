@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GST Calculator | Goods & Services Tax Price Calculator | QuickCalcPro</title>
+    <meta name="description" content="Calculate pre-tax and post-tax products values with QuickCalcPro's Goods and Services Tax (GST) Calculator. Instantly add or remove GST percentage margins." />
+    <!-- Canonical links -->
+    <link rel="canonical" href="http://quickcalcpro.gt.tc/gst-calculator" />
+
+    <!-- Schema Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "http://quickcalcpro.gt.tc/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "GST Calculator",
+              "item": "http://quickcalcpro.gt.tc/gst-calculator"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Tailwind & Style -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Jost', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+    
+    <!-- HEADER -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <a href="/" class="flex items-center space-x-2.5 group">
+          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:bg-blue-700 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-slate-900 tracking-tight">QuickCalc<span class="text-blue-600">Pro</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="/" class="text-slate-600 hover:text-blue-600 transition">Home</a>
+          
+          <div class="relative" id="tools-dropdown-btn">
+            <button class="text-blue-606 text-blue-600 transition flex items-center space-x-1 focus:outline-none">
+              <span>Tools</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-slate-100 p-2 hidden z-50 text-slate-700" id="tools-dropdown">
+              <div class="px-3 py-1.5 text-xs font-semibold text-slate-400 tracking-wider uppercase">Categories</div>
+              <a href="/emi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">EMI Calculator</a>
+              <a href="/loan-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition font-semibold">Loan Calculator</a>
+              <a href="/gst-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition font-semibold">GST Calculator</a>
+              <a href="/bmi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMI Calculator</a>
+              <a href="/bmr-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition font-semibold">BMR Calculator</a>
+              <a href="/calorie-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Calorie Calculator</a>
+              <a href="/percentage-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Percentage Calculator</a>
+              <a href="/scientific-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Scientific Calculator</a>
+              <a href="/currency-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition font-semibold">Currency Converter</a>
+              <a href="/unit-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Unit Converter</a>
+            </div>
+          </div>
+
+          <a href="/tools" class="text-slate-600 hover:text-slate-900 transition">Categories</a>
+          <a href="/about" class="text-slate-600 hover:text-slate-900 transition">About</a>
+          <a href="/contact" class="text-slate-600 hover:text-slate-900 transition">Contact</a>
+        </nav>
+
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="/tools" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition">Explore All Tools</a>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-slate-900 focus:outline-none p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
+        <div class="px-4 py-3 space-y-2.5 text-base font-medium">
+          <a href="/" class="block text-slate-600 py-1">Home</a>
+          <button id="mobile-tools-btn" class="w-full text-left py-1 text-blue-606 flex items-center justify-between">
+            <span>Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div id="mobile-tools-dropdown" class="hidden pl-4 space-y-1 text-sm bg-slate-50 rounded-md p-1.5 text-slate-600">
+            <a href="/emi-calculator" class="block py-1">EMI Calculator</a>
+            <a href="/loan-calculator" class="block py-1">Loan Calculator</a>
+            <a href="/gst-calculator" class="block py-1 font-semibold">GST Calculator</a>
+            <a href="/bmi-calculator" class="block py-1">BMI Calculator</a>
+            <a href="/bmr-calculator" class="block py-1">BMR Calculator</a>
+            <a href="/calorie-calculator" class="block py-1">Calorie Calculator</a>
+            <a href="/percentage-calculator" class="block py-1">Percentage Calculator</a>
+            <a href="/scientific-calculator" class="block py-1">Scientific Calculator</a>
+            <a href="/currency-converter" class="block py-1">Currency Converter</a>
+            <a href="/unit-converter" class="block py-1">Unit Converter</a>
+          </div>
+          <a href="/tools" class="block text-slate-600 py-1">Categories</a>
+          <a href="/about" class="block text-slate-600 py-1">About</a>
+          <a href="/contact" class="block text-slate-600 py-1">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT BODY -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="flex text-xs text-slate-400 mb-6 font-medium tracking-wide">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2">
+          <li><a href="/" class="hover:text-blue-600 transition">Home</a></li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-3.5 h-3.5 text-slate-300 mx-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              <a href="/tools" class="hover:text-blue-600 transition">Tools Directory</a>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-3.5 h-3.5 text-slate-300 mx-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              <span class="text-slate-500">GST Calculator</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- TOP AD -->
+      <div class="adsense-placeholder bg-orange-50 border border-dashed border-orange-200 rounded-xl py-6 text-center text-slate-400 text-xs mb-8 select-none">
+        SPONSORED PLACEMENT AD — READY FOR ADSENSE (gst-top-banner)
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        
+        <!-- Input section -->
+        <div class="lg:col-span-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 border-b border-slate-50 pb-3 mb-6">Tax Parameters</h2>
+            
+            <div class="space-y-6">
+              <!-- Mode selector -->
+              <div>
+                <label class="text-sm font-semibold text-slate-700 block mb-2">GST Calculation Mode</label>
+                <div class="grid grid-cols-2 gap-2 bg-slate-50 p-1 rounded-lg">
+                  <button id="mode-add" class="py-2.5 text-xs font-bold rounded-md bg-blue-600 text-white shadow-sm transition">Add GST (+)</button>
+                  <button id="mode-remove" class="py-2.5 text-xs font-bold rounded-md text-slate-600 hover:bg-slate-100 transition">Remove GST (-)</button>
+                </div>
+              </div>
+
+              <!-- Base Price -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label id="base-price-label" class="text-sm font-semibold text-slate-700">Net Price (Excl. Tax)</label>
+                  <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded" id="base-badge">$ 1,000</span>
+                </div>
+                <div class="relative rounded-lg border border-slate-200 p-0.5 flex items-center mb-3">
+                  <span class="pl-3 text-slate-400 font-bold">$</span>
+                  <input type="number" id="gst-base" value="1000" class="py-2.5 px-3 w-full text-slate-900 text-sm font-bold outline-none bg-transparent" />
+                </div>
+                <input type="range" id="gst-base-range" min="10" max="25000" step="50" value="1000" class="w-full accent-blue-500 cursor-pointer h-1.5 bg-slate-100 rounded-lg" />
+              </div>
+
+              <!-- GST Rate -->
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <label class="text-sm font-semibold text-slate-700">Tax Percentage Rate</label>
+                  <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded" id="rate-badge">18 %</span>
+                </div>
+                <!-- Standard buttons -->
+                <div class="grid grid-cols-4 gap-2 mb-3">
+                  <button class="rate-btn p-2 bg-slate-50 hover:bg-slate-100 border text-xs font-bold text-slate-700 rounded-lg" data-rate="5">5%</button>
+                  <button class="rate-btn p-2 bg-slate-50 hover:bg-slate-100 border text-xs font-bold text-slate-700 rounded-lg" data-rate="12">12%</button>
+                  <button class="rate-btn p-2 bg-blue-50 border-blue-200 border text-xs font-bold text-blue-600 rounded-lg" data-rate="18">18%</button>
+                  <button class="rate-btn p-2 bg-slate-50 hover:bg-slate-100 border text-xs font-bold text-slate-700 rounded-lg" data-rate="28">28%</button>
+                </div>
+                <div class="relative rounded-lg border border-slate-200 p-0.5 flex items-center">
+                  <input type="number" id="gst-rate" value="18" class="py-2.5 px-3 w-full text-slate-900 text-sm font-semibold outline-none bg-transparent" />
+                  <span class="pr-3 text-slate-400 font-bold">%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="border-t border-slate-100 pt-4 mt-6 text-xs text-slate-400 font-medium">
+            Formulas are mathematically certified according to global accounting procedures.
+          </div>
+        </div>
+
+        <!-- Output section -->
+        <div class="lg:col-span-6 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 border-b border-slate-50 pb-3 mb-6">Accounting Invoicing Breakdown</h2>
+            
+            <div class="space-y-4">
+              <!-- Original Price row -->
+              <div class="bg-slate-100 p-4 rounded-xl border flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wide" id="out-original-label">Original Net Price</span>
+                <span class="text-lg font-bold text-slate-800" id="out-original">$ 1,000.00</span>
+              </div>
+
+              <!-- GST portion split -->
+              <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-50/80 space-y-3">
+                <div class="flex justify-between items-center text-xs text-slate-505 font-semibold text-slate-500">
+                  <span>SGST (State Tax Portion 50%):</span>
+                  <span id="out-sgst">$ 90.00</span>
+                </div>
+                <div class="flex justify-between items-center text-xs text-slate-505 font-semibold text-slate-500">
+                  <span>CGST (Central Tax Portion 50%):</span>
+                  <span id="out-cgst">$ 90.00</span>
+                </div>
+                <div class="border-t border-blue-100/50 pt-2.5 flex justify-between items-center">
+                  <span class="text-xs font-bold text-blue-655 text-blue-600 uppercase tracking-widest">TOTAL ACTUATED GST</span>
+                  <span class="text-xl font-extrabold text-blue-600" id="out-gst">$ 180.00</span>
+                </div>
+              </div>
+
+              <!-- Grand Gross value -->
+              <div class="bg-slate-900 text-white p-5 rounded-xl border border-slate-800 flex justify-between items-center shadow-lg">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400" id="out-total-label">Grand Gross Price (Incl. GST)</span>
+                <span class="text-2xl font-black text-white" id="out-total">$ 1,180.00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 text-center text-xs text-slate-400 font-semibold">
+            Estimates only. Values correspond to standard taxation modeling.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LONG SEO ARTICLE -->
+      <section class="prose prose-slate bg-white p-8 rounded-2xl border border-slate-100 max-w-full font-sans text-slate-600 leading-relaxed mb-12">
+        <h2 class="text-2xl font-bold text-slate-950 mb-4 font-sans">The Business Science of Goods & Services Tax (GST) Calculations</h2>
+        <p class="mb-4">
+          In international finance and local commerce, taxation structures keep public infrastructure funded. The popular **Goods and Services Tax (GST)** represents a multi-stage consumption fee added directly to product values. Business entities and service providers calculate these tax margins to ensure compliance and accurate pricing. Our dynamic <strong>GST Calculator</strong> is available at the official domain <a href="http://quickcalcpro.gt.tc/gst-calculator" class="text-blue-600 font-bold hover:underline">http://quickcalcpro.gt.tc/gst-calculator</a>.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">Adding GST vs. Removing GST Formulas</h3>
+        <p class="mb-4">
+          Depending on whether you are calculating the taxable value of an item or tax-inclusive pricing, different mathematical formulas apply:
+        </p>
+        
+        <h4 class="text-base font-bold text-slate-800 mt-4 mb-2">1. Formula to Add GST (Computing Gross Price):</h4>
+        <div class="bg-slate-50 text-slate-800 font-mono text-xs p-4 rounded-lg my-4 text-center border">
+          GST Amount = Net Price x (GST % / 100)<br/>
+          Gross Price = Net Price + GST Amount
+        </div>
+        <p class="mb-4">
+          For example, if you add 18% GST to a net price of $1,000, the GST amount is $180, and the total gross price is $1,180.
+        </p>
+
+        <h4 class="text-base font-bold text-slate-800 mt-4 mb-2">2. Formula to Remove GST (Reverse Calculation):</h4>
+        <p class="mb-4">
+          To extract the pre-tax net value from a tax-inclusive gross price, use this formula:
+        </p>
+        <div class="bg-slate-50 text-slate-800 font-mono text-xs p-4 rounded-lg my-4 text-center border">
+          Net Price = Gross Price / (1 + (GST % / 100))<br/>
+          GST Amount = Gross Price - Net Price
+        </div>
+        <p class="mb-4">
+          For example, if the gross price is $1,180 and you remove an 18% tax margin, the net price is $1,000, and the extracted GST is $180.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">Split Portions: CGST vs. SGST</h3>
+        <p class="mb-4">
+          In federal tax systems like in India or Canada, GST is often split into two portions:
+        </p>
+        <ul class="list-disc pl-6 mb-6 space-y-1.5 text-sm">
+          <li><strong>CGST (Central GST):</strong> The segment collected directly by the central or federal government body.</li>
+          <li><strong>SGST (State GST):</strong> The segment collected by the local state or provincial government body.</li>
+        </ul>
+        <p class="mb-4">
+          The rate is typically split 50/50 between federal and state levels. For an 18% GST rate, 9% is allocated to CGST and 9% to SGST.
+        </p>
+      </section>
+
+      <!-- RELATED FINANCIAL CATEGORIES LINK BAR -->
+      <section class="bg-white p-6 rounded-2xl border border-slate-100 mb-8">
+        <h3 class="text-base font-bold text-slate-900 mb-4 uppercase tracking-widest text-[10px]">Explore Other Financial Utilities</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <a href="/emi-calculator" class="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 transition">EMI Calculator</a>
+          <a href="/loan-calculator" class="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 transition font-semibold">Loan Calculator</a>
+          <a href="/percentage-calculator" class="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 transition">Percentage Calculator</a>
+          <a href="/currency-converter" class="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 transition">Currency Converter</a>
+        </div>
+      </section>
+
+      <!-- BOTTOM AD -->
+      <div class="adsense-placeholder bg-orange-50 border border-dashed border-orange-200 rounded-xl py-6 text-center text-slate-400 text-xs select-none">
+        SPONSORED PLACEMENT AD — READY FOR ADSENSE (gst-bottom-banner)
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-sm pt-12 pb-6 border-t border-slate-800 mt-12 w-full">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold">
+              <span class="text-lg">+</span>
+            </div>
+            <span class="text-lg font-bold text-white tracking-tight">QuickCalc<span class="text-blue-500">Pro</span></span>
+          </div>
+          <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+            The free SaaS-grade multi-page platform offering optimized responsive mathematical calculators and offline PWA reliability.
+          </p>
+          <div class="text-xs text-blue-400 font-semibold pt-2">
+            Official URL: <a href="http://quickcalcpro.gt.tc/" class="hover:underline">http://quickcalcpro.gt.tc/</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Financial & Health</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/emi-calculator" class="hover:text-blue-400 transition">EMI Calculator</a></li>
+            <li><a href="/loan-calculator" class="hover:text-blue-400 transition font-semibold">Loan Calculator</a></li>
+            <li><a href="/gst-calculator" class="hover:text-blue-400 transition font-semibold">GST Calculator</a></li>
+            <li><a href="/bmi-calculator" class="hover:text-blue-400 transition">BMI Calculator</a></li>
+            <li><a href="/bmr-calculator" class="hover:text-blue-400 transition">BMR Calculator</a></li>
+            <li><a href="/calorie-calculator" class="hover:text-blue-400 transition">Calorie Calculator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Math & Converters</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/percentage-calculator" class="hover:text-blue-400 transition">Percentage Calculator</a></li>
+            <li><a href="/scientific-calculator" class="hover:text-blue-400 transition">Scientific Calculator</a></li>
+            <li><a href="/currency-converter" class="hover:text-blue-400 transition">Currency Converter</a></li>
+            <li><a href="/unit-converter" class="hover:text-blue-400 transition font-semibold">Unit Converter</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Legal & Map</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/about" class="hover:text-blue-400 transition">About Us</a></li>
+            <li><a href="/contact" class="hover:text-blue-400 transition">Contact Us</a></li>
+            <li><a href="/privacy-policy" class="hover:text-blue-400 transition">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions" class="hover:text-blue-400 transition">Terms & Conditions</a></li>
+            <li><a href="/disclaimer" class="hover:text-blue-400 transition">Disclaimer</a></li>
+            <li><a href="/sitemap" class="hover:text-blue-400 transition">HTML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+        <div>
+          © 2026 QuickCalcPro. All Rights Reserved. General calculations for estimated reference.
+        </div>
+        <div class="flex space-x-6">
+          <a href="http://quickcalcpro.gt.tc/" class="hover:text-blue-400 transition">http://quickcalcpro.gt.tc/</a>
+          <a href="/robots.txt" class="hover:text-blue-400 transition">robots.txt</a>
+          <a href="/sitemap.xml" class="hover:text-blue-400 transition">sitemap.xml</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CENTRAL JAVASCRIPT HUB & LOCAL GST SCRIPT -->
+    <script src="/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Elements
+        const addBtn = document.getElementById("mode-add");
+        const removeBtn = document.getElementById("mode-remove");
+
+        const baseInput = document.getElementById("gst-base");
+        const baseRange = document.getElementById("gst-base-range");
+        const baseBadge = document.getElementById("base-badge");
+        const baseLabel = document.getElementById("base-price-label");
+
+        const rateBtns = document.querySelectorAll(".rate-btn");
+        const rateInput = document.getElementById("gst-rate");
+        const rateBadge = document.getElementById("rate-badge");
+
+        const outOriginalLabel = document.getElementById("out-original-label");
+        const outOriginal = document.getElementById("out-original");
+        const outSgst = document.getElementById("out-sgst");
+        const outCgst = document.getElementById("out-cgst");
+        const outGst = document.getElementById("out-gst");
+        const outTotalLabel = document.getElementById("out-total-label");
+        const outTotal = document.getElementById("out-total");
+
+        let activeMode = "add"; // add vs remove
+
+        function recalculate() {
+          let basePrice = parseFloat(baseInput.value) || 0;
+          let rate = parseFloat(rateInput.value) || 0;
+
+          baseBadge.innerText = "$ " + basePrice.toLocaleString();
+          rateBadge.innerText = rate + " %";
+
+          let original = 0;
+          let gst = 0;
+          let total = 0;
+
+          if (basePrice > 0) {
+            if (activeMode === "add") {
+              original = basePrice;
+              gst = basePrice * (rate / 100);
+              total = basePrice + gst;
+            } else {
+              total = basePrice;
+              original = basePrice / (1 + (rate / 100));
+              gst = basePrice - original;
+            }
+          }
+
+          // Invoicing values
+          outOriginal.innerText = "$ " + original.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          outGst.innerText = "$ " + gst.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          outTotal.innerText = "$ " + total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+          // CGST + SGST splits (50% each)
+          outSgst.innerText = "$ " + (gst / 2).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          outCgst.innerText = "$ " + (gst / 2).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        // Mode handles
+        addBtn.addEventListener("click", () => {
+          if (activeMode === "add") return;
+          activeMode = "add";
+
+          addBtn.className = "py-2.5 text-xs font-bold rounded-md bg-blue-600 text-white shadow-sm transition";
+          removeBtn.className = "py-2.5 text-xs font-bold rounded-md text-slate-600 hover:bg-slate-100 transition";
+
+          baseLabel.innerText = "Net Price (Excl. Tax)";
+          outOriginalLabel.innerText = "Original Net Price";
+          outTotalLabel.innerText = "Grand Gross Price (Incl. GST)";
+
+          recalculate();
+        });
+
+        removeBtn.addEventListener("click", () => {
+          if (activeMode === "remove") return;
+          activeMode = "remove";
+
+          removeBtn.className = "py-2.5 text-xs font-bold rounded-md bg-blue-600 text-white shadow-sm transition";
+          addBtn.className = "py-2.5 text-xs font-bold rounded-md text-slate-600 hover:bg-slate-100 transition";
+
+          baseLabel.innerText = "Gross Price (Incl. Tax)";
+          outOriginalLabel.innerText = "Extracted Net Price";
+          outTotalLabel.innerText = "Original Gross Invoice Value";
+
+          recalculate();
+        });
+
+        // Sync inputs
+        baseInput.addEventListener("input", () => {
+          baseRange.value = baseInput.value;
+          recalculate();
+        });
+        baseRange.addEventListener("input", () => {
+          baseInput.value = baseRange.value;
+          recalculate();
+        });
+
+        rateInput.addEventListener("input", () => {
+          rateBtns.forEach(btn => btn.className = "rate-btn p-2 bg-slate-50 hover:bg-slate-100 border text-xs font-bold text-slate-700 rounded-lg");
+          recalculate();
+        });
+
+        rateBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            rateBtns.forEach(b => b.className = "rate-btn p-2 bg-slate-50 hover:bg-slate-100 border text-xs font-bold text-slate-700 rounded-lg");
+            btn.className = "rate-btn p-2 bg-blue-50 border-blue-200 border text-xs font-bold text-blue-600 rounded-lg";
+            
+            rateInput.value = btn.getAttribute("data-rate");
+            recalculate();
+          });
+        });
+
+        // Run primary
+        recalculate();
+      });
+    </script>
+  </body>
+</html>

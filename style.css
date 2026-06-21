@@ -1,0 +1,295 @@
+/* 
+ * Style sheet for QuickCalcPro
+ * Font: Jost
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary: #2563eb;
+    --secondary: #64748b;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --border: #e2e8f0;
+    --accent: #3b82f6;
+
+    --font-sans: 'Jost', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg) !important;
+    color: var(--text) !important;
+    font-family: var(--font-sans) !important;
+    scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Force standard text/bg utility class overrides matching theme colors */
+.bg-slate-50, .bg-slate-50\/50, .bg-slate-50\/60, .bg-slate-50\/80 {
+    background-color: var(--bg) !important;
+}
+
+.bg-white, .bg-white\/80 {
+    background-color: var(--card) !important;
+}
+
+.text-slate-800, .text-slate-900, .text-slate-950 {
+    color: var(--text) !important;
+}
+
+.text-slate-400, .text-slate-500, .text-slate-650 {
+    color: var(--secondary) !important;
+}
+
+.border-slate-50, .border-slate-100, .border-slate-150, .border-slate-200 {
+    border-color: var(--border) !important;
+}
+
+/* Header standard rules */
+header {
+    background-color: var(--card) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+header nav a {
+    color: var(--secondary) !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    transition: color 0.2s ease !important;
+}
+
+header nav a:hover, header nav a.active {
+    color: var(--primary) !important;
+}
+
+/* Hero section standard rules */
+#hero-sec {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%) !important;
+    color: var(--text) !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+
+#hero-sec svg pattern path {
+    stroke: rgba(37, 99, 235, 0.1) !important;
+}
+
+#hero-sec h1 {
+    color: var(--text) !important;
+}
+
+#hero-sec p {
+    color: var(--secondary) !important;
+}
+
+#hero-sec .inline-flex {
+    background: rgba(255, 255, 255, 0.75) !important;
+    color: var(--primary) !important;
+    border: 1px solid rgba(37, 99, 235, 0.15) !important;
+    font-family: monospace !important;
+}
+
+#hero-sec .global-search-input {
+    color: var(--text) !important;
+    background: transparent !important;
+}
+
+#hero-sec .global-search-input::placeholder {
+    color: var(--secondary) !important;
+}
+
+#hero-sec .relative.bg-white {
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid var(--border) !important;
+    background: white !important;
+}
+
+#hero-sec .text-slate-400, #hero-sec .text-slate-300 {
+    color: var(--secondary) !important;
+}
+
+#hero-sec .bg-gradient-to-r {
+    background-image: linear-gradient(to right, #2563eb, #1d4ed8) !important;
+}
+
+/* Primary buttons style standard overrides */
+.btn-primary, button[type="submit"], a[href="/tools"].bg-blue-600 {
+    background-color: var(--primary) !important;
+    color: white !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: background-color 0.2s ease, transform 0.2s ease !important;
+}
+
+.btn-primary:hover, button[type="submit"]:hover, a[href="/tools"].bg-blue-600:hover {
+    background-color: var(--accent) !important;
+}
+
+/* Card and component standard rules */
+.calculator-card, .tool-grid-card, .tool-card {
+    background-color: var(--card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.01) !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.calculator-card:hover, .tool-grid-card:hover, .tool-card:hover {
+    border-color: var(--primary) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.04) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* AdSense Placeholder Theme style standard override */
+.adsense-placeholder {
+    background-color: #f1f5f9 !important;
+    border: 2px dashed #cbd5e1 !important;
+    border-radius: 8px !important;
+    color: var(--secondary) !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    padding: 20px !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.adsense-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: placeholderShimmer 2.5s infinite;
+}
+
+@keyframes placeholderShimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 200%;
+    }
+}
+
+/* Footer structure overrides matching theme styles */
+footer {
+    background-color: var(--card) !important;
+    border-top: 1px solid var(--border) !important;
+    color: var(--secondary) !important;
+}
+
+footer h4, footer .text-white, footer span.text-white {
+    color: var(--text) !important;
+}
+
+footer a {
+    color: var(--secondary) !important;
+    transition: color 0.15s ease !important;
+}
+
+footer a:hover {
+    color: var(--primary) !important;
+}
+
+footer .border-slate-800 {
+    border-color: var(--border) !important;
+}
+
+footer .text-slate-500 {
+    color: var(--secondary) !important;
+}
+
+footer .bg-blue-600 {
+    background-color: var(--primary) !important;
+}
+
+/* Inputs element modifications */
+input[type="number"], select, textarea {
+    background-color: var(--card) !important;
+    border-color: var(--border) !important;
+    color: var(--text) !important;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input[type="number"]:focus, select:focus, textarea:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1) !important;
+}
+
+/* Custom inputs range slider track coloring */
+input[type="range"] {
+    accent-color: var(--primary) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Custom animations */
+.fade-in {
+    animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Floating tooltips */
+.tooltip {
+    position: relative;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f172a;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}

@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Currency Converter | Automated Exchange Rate Forecaster | QuickCalcPro</title>
+    <meta name="description" content="Convert between USD, PKR, EUR, GBP, INR, AED, and AUD using live API exchange rates. Instantly check dynamic global currency calculations offline with QuickCalcPro." />
+    <!-- Canonical link -->
+    <link rel="canonical" href="http://quickcalcpro.gt.tc/currency-converter" />
+
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "http://quickcalcpro.gt.tc/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Currency Converter",
+              "item": "http://quickcalcpro.gt.tc/currency-converter"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Style & Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Jost', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+    
+    <!-- HEADER -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <a href="/" class="flex items-center space-x-2.5 group">
+          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:bg-blue-700 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-slate-900 tracking-tight">QuickCalc<span class="text-blue-600">Pro</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="/" class="text-slate-600 hover:text-blue-600 transition">Home</a>
+          
+          <div class="relative" id="tools-dropdown-btn">
+            <button class="text-blue-606 text-blue-600 transition flex items-center space-x-1 focus:outline-none">
+              <span>Tools</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-slate-100 p-2 hidden z-50 text-slate-700" id="tools-dropdown">
+              <div class="px-3 py-1.5 text-xs font-semibold text-slate-400 tracking-wider uppercase">Categories</div>
+              <a href="/emi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">EMI Calculator</a>
+              <a href="/loan-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Loan Calculator</a>
+              <a href="/gst-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition font-semibold">GST Calculator</a>
+              <a href="/bmi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMI Calculator</a>
+              <a href="/bmr-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMR Calculator</a>
+              <a href="/calorie-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Calorie Calculator</a>
+              <a href="/percentage-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Percentage Calculator</a>
+              <a href="/scientific-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition font-semibold">Scientific Calculator</a>
+              <a href="/currency-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition font-semibold">Currency Converter</a>
+              <a href="/unit-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Unit Converter</a>
+            </div>
+          </div>
+
+          <a href="/tools" class="text-slate-600 hover:text-slate-900 transition">Categories</a>
+          <a href="/about" class="text-slate-600 hover:text-slate-900 transition">About</a>
+          <a href="/contact" class="text-slate-600 hover:text-slate-900 transition">Contact</a>
+        </nav>
+
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="/tools" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition">Explore All Tools</a>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-slate-900 focus:outline-none p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
+        <div class="px-4 py-3 space-y-2.5 text-base font-medium">
+          <a href="/" class="block text-slate-600 py-1">Home</a>
+          <button id="mobile-tools-btn" class="w-full text-left py-1 text-blue-600 flex items-center justify-between">
+            <span>Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div id="mobile-tools-dropdown" class="hidden pl-4 space-y-1 text-sm bg-slate-50 rounded-md p-1.5 text-slate-600">
+            <a href="/emi-calculator" class="block py-1">EMI Calculator</a>
+            <a href="/loan-calculator" class="block py-1">Loan Calculator</a>
+            <a href="/gst-calculator" class="block py-1">GST Calculator</a>
+            <a href="/bmi-calculator" class="block py-1">BMI Calculator</a>
+            <a href="/bmr-calculator" class="block py-1">BMR Calculator</a>
+            <a href="/calorie-calculator" class="block py-1">Calorie Calculator</a>
+            <a href="/percentage-calculator" class="block py-1">Percentage Calculator</a>
+            <a href="/scientific-calculator" class="block py-1">Scientific Calculator</a>
+            <a href="/currency-converter" class="block py-1 font-semibold">Currency Converter</a>
+            <a href="/unit-converter" class="block py-1">Unit Converter</a>
+          </div>
+          <a href="/tools" class="block text-slate-600 py-1">Categories</a>
+          <a href="/about" class="block text-slate-600 py-1">About</a>
+          <a href="/contact" class="block text-slate-600 py-1">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT BODY -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="flex text-xs text-slate-400 mb-6 font-medium tracking-wide">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2">
+          <li><a href="/" class="hover:text-blue-600 transition">Home</a></li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-3.5 h-3.5 text-slate-300 mx-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              <a href="/tools" class="hover:text-blue-600 transition">Tools Directory</a>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-3.5 h-3.5 text-slate-300 mx-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              <span class="text-slate-500">Currency Converter</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- TOP AD -->
+      <div class="adsense-placeholder bg-orange-50 border border-dashed border-orange-200 rounded-xl py-6 text-center text-slate-400 text-xs mb-8 select-none">
+        SPONSORED PLACEMENT AD — READY FOR ADSENSE (forex-top-banner)
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        
+        <!-- Interactive conversion panel -->
+        <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 border-b border-slate-50 pb-3 mb-6">Convert Internationally</h2>
+            
+            <div class="space-y-6">
+              <!-- Source Currency Input -->
+              <div>
+                <label class="text-sm font-semibold text-slate-700 block mb-2">From Amount</label>
+                <div class="grid grid-cols-3 gap-3">
+                  <!-- Input -->
+                  <div class="col-span-2 relative rounded-lg border border-slate-200 p-0.5 flex items-center bg-slate-50/20">
+                    <input type="number" id="forex-amount" value="100" class="py-3 px-4 w-full text-slate-900 text-base font-bold bg-transparent outline-none" />
+                  </div>
+                  <!-- Selection -->
+                  <select id="forex-from-currency" class="p-3 bg-white border border-slate-200 rounded-lg text-sm font-bold text-slate-700 outline-none">
+                    <option value="USD" selected>USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="PKR">PKR - Pakistan Rupee</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="AED">AED - UAE Dirham</option>
+                    <option value="SAR">SAR - Saudi Riyal</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Swap Button layout -->
+              <div class="flex justify-center -my-3">
+                <button id="forex-swap" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 hover:scale-105 transition shadow-md active:scale-95 focus:outline-none">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Target Currency Input -->
+              <div>
+                <label class="text-sm font-semibold text-slate-700 block mb-2">To Amount</label>
+                <div class="grid grid-cols-3 gap-3">
+                  <!-- Output Read-only -->
+                  <div class="col-span-2 relative rounded-lg border border-slate-200 p-0.5 flex items-center bg-slate-100">
+                    <input type="text" id="forex-result" readonly value="27,820.00" class="py-3 px-4 w-full text-blue-600 text-lg font-black bg-transparent outline-none cursor-default" />
+                  </div>
+                  <!-- Selection -->
+                  <select id="forex-to-currency" class="p-3 bg-white border border-slate-200 rounded-lg text-sm font-bold text-slate-700 outline-none">
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="PKR" selected>PKR - Pakistan Rupee</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="AED">AED - UAE Dirham</option>
+                    <option value="SAR">SAR - Saudi Riyal</option>
+                    <option value="AUD">AUD - Australian Dollar</option>
+                    <option value="CAD">CAD - Canadian Dollar</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                    <option value="CNY">CNY - Chinese Yuan</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Read-out equation formula block -->
+            <div class="mt-8 bg-blue-50/40 border border-blue-50 p-4 rounded-xl flex items-center justify-between text-xs font-semibold text-slate-600">
+              <span id="forex-rate-equation">1 USD = 278.20 PKR</span>
+              <button id="forex-refresh" class="text-blue-600 hover:underline flex items-center"><svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 15H19" /></svg> Force Refresh Rates</button>
+            </div>
+          </div>
+
+          <div class="mt-8 text-xs text-slate-400 font-medium">
+            * Live exchange data fetched seamlessly from Open Exchange Rate APIs (https://open.er-api.com). Rates cached automatically.
+          </div>
+        </div>
+
+        <!-- Cross-rates grid comparison visual panel -->
+        <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+          <h2 class="text-xl font-bold text-slate-900 border-b border-slate-50 pb-3 mb-6">Cross Rates Table (1 USD Base)</h2>
+          <div class="overflow-y-auto max-h-80 border rounded-lg" id="cross-rates-container">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 uppercase text-slate-500 font-bold border-b">
+                <tr>
+                  <th class="p-3">Currency</th>
+                  <th class="p-3 text-right">Absolute Rate</th>
+                </tr>
+              </thead>
+              <tbody id="cross-rates-tbody" class="divide-y text-slate-700 font-medium">
+                <tr><td class="p-3">EUR - Euro</td><td class="p-3 text-right font-semibold">0.93</td></tr>
+                <tr><td class="p-3">GBP - British Pound</td><td class="p-3 text-right font-semibold">0.79</td></tr>
+                <tr><td class="p-3">PKR - Pakistan Rupee</td><td class="p-3 text-right font-semibold text-blue-600">278.20</td></tr>
+                <tr><td class="p-3">INR - Indian Rupee</td><td class="p-3 text-right font-semibold">83.35</td></tr>
+                <tr><td class="p-3">AED - UAE Dirham</td><td class="p-3 text-right font-semibold">3.67</td></tr>
+                <tr><td class="p-3">SAR - Saudi Riyal</td><td class="p-3 text-right font-semibold">3.75</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Last checked status -->
+          <div class="mt-4 text-center text-[10px] uppercase font-bold tracking-wider text-slate-400" id="forex-status">
+            API STATUS: LOADING LIVE RATES...
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LONG SEO ARTICLE (800 - 1500+ WORDS) -->
+      <section class="prose prose-slate bg-white p-8 rounded-2xl border border-slate-100 max-w-full font-sans text-slate-600 leading-relaxed mb-12">
+        <h2 class="text-2xl font-bold text-slate-950 mb-4 font-sans">The Science of Forex Valuation & Exchange Rate Calculations</h2>
+        <p class="mb-4">
+          Corporate entities, imports/exports logistics networks, and international freelance workers manage financial conversions daily. The value of custom products is represented differently relative to national legal currencies. To calculate conversions instantly without discrepancies, we engineered our <strong>Currency Converter Module</strong> at the official domain <a href="http://quickcalcpro.gt.tc/currency-converter" class="text-blue-600 font-bold hover:underline">http://quickcalcpro.gt.tc/currency-converter</a>.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">How Exchange Rates Are Determined</h3>
+        <p class="mb-4">
+          Unlike static converters that use stale math, QuickCalcPro pulls from live currency exchange feeds (https://open.er-api.com). These APIs aggregate rates from major global banking systems, providing high accuracy for calculations.
+        </p>
+        <p class="mb-4">
+          The basic conversion formula is simple:
+        </p>
+        <div class="bg-slate-50 text-slate-800 font-mono text-xs p-4 rounded-lg my-4 text-center border">
+          Target Amount = Source Amount x (Target Rate / Source Rate)
+        </div>
+        <p class="mb-4">
+          Where both the Source Rate and Target Rate are valued relative to a standard base currency (typically USD or EUR). 
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">Practical Conversion Scenarios</h3>
+        <p class="mb-4">
+          Let's walk through a typical conversion. If a user wants to convert <strong>$100 USD</strong> to Pakistan Rupees (PKR):
+        </p>
+        <ol class="list-decimal pl-6 mb-6 space-y-1 text-sm">
+          <li>The converter queries the API for USD and PKR rates relative to the base.</li>
+          <li>If USD = 1.00 and PKR = 278.20, the formula is: $100 x (278.20 / 1.00) = <strong>27,820.00 PKR</strong>.</li>
+          <li>If converting from Euros (EUR) to PKR: with EUR = 0.93 and PKR = 278.20, the formula is: €100 x (278.20 / 0.93) = <strong>29,913.97 PKR</strong>.</li>
+        </ol>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">The Benefits of API Automation</h3>
+        <p class="mb-4">
+          Global currency values fluctuate constantly based on market indicators, inflation, trade balances, and central bank regulations. By automating our exchange rates with a live JSON API, QuickCalcPro ensures your calculations are always based on the most up-to-date market terms, removing the guesswork from global currency transactions.
+        </p>
+      </section>
+
+      <!-- RELATED TOOLS NAVIGATION -->
+      <section class="bg-white p-6 rounded-2xl border border-slate-100 mb-8">
+        <h3 class="text-base font-bold text-slate-900 mb-4 uppercase tracking-widest text-[10px]">Explore Other Smart Converters</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <a href="/unit-converter" class="p-3 bg-slate-50 hover:bg-emerald-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-emerald-600 transition">Unit Converter</a>
+          <a href="/percentage-calculator" class="p-3 bg-slate-50 hover:bg-emerald-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-emerald-600 transition">Percentage Calculator</a>
+          <a href="/gst-calculator" class="p-3 bg-slate-50 hover:bg-emerald-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-emerald-600 transition">GST Calculator</a>
+          <a href="/emi-calculator" class="p-3 bg-slate-50 hover:bg-emerald-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-emerald-600 transition">EMI Calculator</a>
+        </div>
+      </section>
+
+      <!-- BOTTOM AD -->
+      <div class="adsense-placeholder bg-orange-50 border border-dashed border-orange-200 rounded-xl py-6 text-center text-slate-400 text-xs select-none">
+        SPONSORED PLACEMENT AD — READY FOR ADSENSE (forex-bottom-banner)
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-sm pt-12 pb-6 border-t border-slate-800 mt-12 w-full">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold">
+              <span class="text-lg">+</span>
+            </div>
+            <span class="text-lg font-bold text-white tracking-tight">QuickCalc<span class="text-blue-500">Pro</span></span>
+          </div>
+          <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+            The free SaaS-grade multi-page platform offering optimized responsive mathematical calculators and offline PWA reliability.
+          </p>
+          <div class="text-xs text-blue-400 font-semibold pt-2">
+            Official URL: <a href="http://quickcalcpro.gt.tc/" class="hover:underline">http://quickcalcpro.gt.tc/</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Financial & Health</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/emi-calculator" class="hover:text-blue-400 transition">EMI Calculator</a></li>
+            <li><a href="/loan-calculator" class="hover:text-blue-400 transition">Loan Calculator</a></li>
+            <li><a href="/gst-calculator" class="hover:text-blue-400 transition">GST Calculator</a></li>
+            <li><a href="/bmi-calculator" class="hover:text-blue-400 transition">BMI Calculator</a></li>
+            <li><a href="/bmr-calculator" class="hover:text-blue-400 transition">BMR Calculator</a></li>
+            <li><a href="/calorie-calculator" class="hover:text-blue-400 transition">Calorie Calculator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Math & Converters</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/percentage-calculator" class="hover:text-blue-400 transition">Percentage Calculator</a></li>
+            <li><a href="/scientific-calculator" class="hover:text-blue-400 transition">Scientific Calculator</a></li>
+            <li><a href="/currency-converter" class="hover:text-blue-400 transition font-semibold">Currency Converter</a></li>
+            <li><a href="/unit-converter" class="hover:text-blue-400 transition">Unit Converter</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Legal & Map</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/about" class="hover:text-blue-400 transition">About Us</a></li>
+            <li><a href="/contact" class="hover:text-blue-400 transition">Contact Us</a></li>
+            <li><a href="/privacy-policy" class="hover:text-blue-400 transition">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions" class="hover:text-blue-400 transition">Terms & Conditions</a></li>
+            <li><a href="/disclaimer" class="hover:text-blue-400 transition">Disclaimer</a></li>
+            <li><a href="/sitemap" class="hover:text-blue-400 transition">HTML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+        <div>
+          © 2026 QuickCalcPro. All Rights Reserved. General calculations for estimated reference.
+        </div>
+        <div class="flex space-x-6">
+          <a href="http://quickcalcpro.gt.tc/" class="hover:text-blue-400 transition">http://quickcalcpro.gt.tc/</a>
+          <a href="/robots.txt" class="hover:text-blue-400 transition">robots.txt</a>
+          <a href="/sitemap.xml" class="hover:text-blue-400 transition">sitemap.xml</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CENTRAL JAVASCRIPT HUB & LIVE CURRENCY API CONTROLLER -->
+    <script src="/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const forexAmount = document.getElementById("forex-amount");
+        const fromCurrency = document.getElementById("forex-from-currency");
+        const toCurrency = document.getElementById("forex-to-currency");
+        const swapBtn = document.getElementById("forex-swap");
+        const forexResult = document.getElementById("forex-result");
+        const forexEquation = document.getElementById("forex-rate-equation");
+        const refreshBtn = document.getElementById("forex-refresh");
+        const crossRatesBody = document.getElementById("cross-rates-tbody");
+        const statusLabel = document.getElementById("forex-status");
+
+        let cachedRates = {};
+        const API_URL = "https://open.er-api.com/v6/latest/USD";
+
+        async function fetchRates() {
+          statusLabel.innerText = "API STATUS: FETCHING DYNAMIC FOREX RATES...";
+          try {
+            const res = await fetch(API_URL);
+            if (!res.ok) throw new Error("Rates API failed");
+            const data = await res.json();
+            
+            cachedRates = data.rates;
+            localStorage.setItem("quickcalc_forex_rates", JSON.stringify(cachedRates));
+            localStorage.setItem("quickcalc_forex_time", Date.now());
+            
+            fillCrossRates();
+            calculateConversion();
+            
+            statusLabel.innerText = "API STATUS: LIVE RATES SECURED";
+            statusLabel.className = "mt-4 text-center text-[10px] uppercase font-bold tracking-wider text-emerald-500";
+          } catch(e) {
+            console.error("Rates fetch failed, fetching cache", e);
+            const cache = localStorage.getItem("quickcalc_forex_rates");
+            if (cache) {
+              cachedRates = JSON.parse(cache);
+              fillCrossRates();
+              calculateConversion();
+              statusLabel.innerText = "API STATUS: OFFLINE CACHED RATES ACTIVE";
+              statusLabel.className = "mt-4 text-center text-[10px] uppercase font-bold tracking-wider text-amber-500";
+            } else {
+              statusLabel.innerText = "API STATUS: ERROR GATHERING RATES";
+              statusLabel.className = "mt-4 text-center text-[10px] uppercase font-bold tracking-wider text-red-500";
+            }
+          }
+        }
+
+        function calculateConversion() {
+          const from = fromCurrency.value;
+          const to = toCurrency.value;
+          const amt = parseFloat(forexAmount.value) || 0;
+
+          if (Object.keys(cachedRates).length === 0) return;
+
+          const baseToFromRate = cachedRates[from] || 1;
+          const baseToToRate = cachedRates[to] || 1;
+
+          // Convert target relative to base
+          const conversionFactor = baseToToRate / baseToFromRate;
+          const resultValue = amt * conversionFactor;
+
+          forexResult.value = resultValue.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          forexEquation.innerText = `1 ${from} = ${conversionFactor.toFixed(4)} ${to}`;
+        }
+
+        function fillCrossRates() {
+          if (Object.keys(cachedRates).length === 0) return;
+          const targetForex = ["EUR", "GBP", "PKR", "INR", "AED", "SAR", "AUD", "CAD", "JPY", "CNY"];
+          let trs = "";
+          targetForex.forEach(cur => {
+            const val = cachedRates[cur] || 1;
+            trs += `
+              <tr class="hover:bg-slate-50/50">
+                <td class="p-3">${cur} - Base Equivalent</td>
+                <td class="p-3 text-right font-semibold text-slate-800">${val.toFixed(2)}</td>
+              </tr>
+            `;
+          });
+          crossRatesBody.innerHTML = trs;
+        }
+
+        // Action handles
+        setupRates();
+
+        function setupRates() {
+          const localCache = localStorage.getItem("quickcalc_forex_rates");
+          const localTime = localStorage.getItem("quickcalc_forex_time");
+          
+          // Cache rates for 1 hour to optimize performance & limit API queries
+          if (localCache && localTime && (Date.now() - parseInt(localTime) < 3600000)) {
+            cachedRates = JSON.parse(localCache);
+            fillCrossRates();
+            calculateConversion();
+            statusLabel.innerText = "API STATUS: CACHED RATES LOADING";
+            statusLabel.className = "mt-4 text-center text-[10px] uppercase font-bold tracking-wider text-emerald-500";
+          } else {
+            fetchRates();
+          }
+        }
+
+        forexAmount.addEventListener("input", calculateConversion);
+        fromCurrency.addEventListener("change", calculateConversion);
+        toCurrency.addEventListener("change", calculateConversion);
+        
+        swapBtn.addEventListener("click", () => {
+          const currentFrom = fromCurrency.value;
+          fromCurrency.value = toCurrency.value;
+          toCurrency.value = currentFrom;
+          calculateConversion();
+        });
+
+        refreshBtn.addEventListener("click", fetchRates);
+      });
+    </script>
+  </body>
+</html>

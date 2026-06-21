@@ -1,0 +1,8 @@
+{
+  "name": "QuickCalcPro",
+  "description": "Premium multi-page calculator platform with comprehensive financial, health, math, and converter tools, optimized for speed and SEO.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

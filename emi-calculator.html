@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EMI Calculator | Free Equated Monthly Loan Installments Calculator | QuickCalcPro</title>
+    <meta name="description" content="Calculate your monthly home, car, or personal loan installment repayments using QuickCalcPro's Equated Monthly Installment (EMI) tool. Check detailed loan principal schedules, total interest, and annual amortization ratios." />
+    <!-- Canonical link -->
+    <link rel="canonical" href="http://quickcalcpro.gt.tc/emi-calculator" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="EMI Calculator | Accurate Loan Repayment Calculations" />
+    <meta property="og:description" content="Calculate monthly home, car, or personal loan installment repayments cleanly with QuickCalcPro." />
+    <meta property="og:url" content="http://quickcalcpro.gt.tc/emi-calculator" />
+    <meta property="og:image" content="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 630' width='1200' height='630'><rect width='1200' height='630' fill='%230f172a'/><text x='50%' y='50%' font-family='sans-serif' font-size='80' font-weight='bold' fill='%232563eb' text-anchor='middle'>EMI Calculator</text></svg>" />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Google Font & Tailwind Core -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Jost', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Structured JSON-LD Breadcrumbs and FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "http://quickcalcpro.gt.tc/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "EMI Calculator",
+              "item": "http://quickcalcpro.gt.tc/emi-calculator"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is an EMI?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "EMI stands for Equated Monthly Installment. It is a fixed payment amount made by a borrower to a lender at a specified date each calendar month."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How is EMI calculated?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "EMI is calculated using the algebraic formula: EMI = [P x r x (1 + r)^n] / [(1 + r)^n - 1], where P is Principal, r is monthly rate of interest, and n is duration in months."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+    
+    <!-- HEADER -->
+    <header class="bg-white border-b border-slate-100 sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+        <a href="/" class="flex items-center space-x-2.5 group">
+          <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:bg-blue-700 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-slate-900 tracking-tight">QuickCalc<span class="text-blue-600">Pro</span></span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+          <a href="/" class="text-slate-600 hover:text-blue-600 transition">Home</a>
+          
+          <div class="relative" id="tools-dropdown-btn">
+            <button class="text-blue-605 text-blue-600 transition flex items-center space-x-1 focus:outline-none">
+              <span>Tools</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-slate-100 p-2 hidden z-50 text-slate-700" id="tools-dropdown">
+              <div class="px-3 py-1.5 text-xs font-semibold text-slate-400 tracking-wider uppercase">Categories</div>
+              <a href="/emi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition font-semibold">EMI Calculator</a>
+              <a href="/loan-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Loan Calculator</a>
+              <a href="/gst-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">GST Calculator</a>
+              <a href="/bmi-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMI Calculator</a>
+              <a href="/bmr-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">BMR Calculator</a>
+              <a href="/calorie-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Calorie Calculator</a>
+              <a href="/percentage-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Percentage Calculator</a>
+              <a href="/scientific-calculator" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Scientific Calculator</a>
+              <a href="/currency-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Currency Converter</a>
+              <a href="/unit-converter" class="block px-3 py-2 rounded-md hover:bg-slate-50 hover:text-blue-600 transition">Unit Converter</a>
+            </div>
+          </div>
+
+          <a href="/tools" class="text-slate-600 hover:text-slate-900 transition">Categories</a>
+          <a href="/about" class="text-slate-600 hover:text-slate-900 transition">About</a>
+          <a href="/contact" class="text-slate-600 hover:text-slate-900 transition">Contact</a>
+        </nav>
+
+        <div class="hidden md:flex items-center space-x-3">
+          <a href="/tools" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium text-sm hover:bg-blue-700 transition">Explore All Tools</a>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-slate-900 focus:outline-none p-1">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 bg-white">
+        <div class="px-4 py-3 space-y-2.5 text-base font-medium">
+          <a href="/" class="block text-slate-600 py-1">Home</a>
+          <button id="mobile-tools-btn" class="w-full text-left py-1 text-blue-600 flex items-center justify-between">
+            <span>Tools</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+          </button>
+          <div id="mobile-tools-dropdown" class="hidden pl-4 space-y-1 text-sm bg-slate-50 rounded-md p-1.5 text-slate-600">
+            <a href="/emi-calculator" class="block py-1 font-semibold">EMI Calculator</a>
+            <a href="/loan-calculator" class="block py-1">Loan Calculator</a>
+            <a href="/gst-calculator" class="block py-1">GST Calculator</a>
+            <a href="/bmi-calculator" class="block py-1">BMI Calculator</a>
+            <a href="/bmr-calculator" class="block py-1">BMR Calculator</a>
+            <a href="/calorie-calculator" class="block py-1">Calorie Calculator</a>
+            <a href="/percentage-calculator" class="block py-1">Percentage Calculator</a>
+            <a href="/scientific-calculator" class="block py-1">Scientific Calculator</a>
+            <a href="/currency-converter" class="block py-1">Currency Converter</a>
+            <a href="/unit-converter" class="block py-1">Unit Converter</a>
+          </div>
+          <a href="/tools" class="block text-slate-600 py-1">Categories</a>
+          <a href="/about" class="block text-slate-600 py-1">About</a>
+          <a href="/contact" class="block text-slate-600 py-1">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT BODY -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+      
+      <!-- BREADCRUMBS -->
+      <nav class="flex text-xs text-slate-400 mb-6 font-medium tracking-wide">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2">
+          <li><a href="/" class="hover:text-blue-600 transition">Home</a></li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-3.5 h-3.5 text-slate-300 mx-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              <a href="/tools" class="hover:text-blue-600 transition">Tools Directory</a>
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg class="w-3.5 h-3.5 text-slate-300 mx-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+              <span class="text-slate-500">EMI Loan Calculator</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- ADVERT BLOCK -->
+      <div class="adsense-placeholder bg-orange-50 border border-dashed border-orange-200 rounded-xl py-6 text-center text-slate-400 text-xs mb-8 select-none">
+        SPONSORED PLACEMENT AD — READY FOR ADSENSE (emi-top-banner)
+      </div>
+
+      <!-- INTERACTIVE CALCULATOR GRID -->
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+        
+        <!-- Input section -->
+        <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+          <h2 class="text-xl font-bold text-slate-900 border-b border-slate-50 pb-3 mb-6">Repayment Variables</h2>
+          
+          <div class="space-y-6">
+            <!-- Amount -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="text-sm font-semibold text-slate-700">Loan Amount</label>
+                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded" id="amount-badge">$ 100,000</span>
+              </div>
+              <div class="relative rounded-lg overflow-hidden border border-slate-200 p-0.5 flex items-center mb-3">
+                <span class="pl-3 pr-1 text-slate-400 font-bold text-sm">$</span>
+                <input type="number" id="emi-amount" value="100000" class="py-2.5 px-3 w-full text-slate-900 text-sm font-semibold bg-transparent" />
+              </div>
+              <input type="range" id="emi-amount-range" min="1000" max="1000000" step="5000" value="100000" class="w-full accent-blue-600 cursor-pointer h-1.5 bg-slate-100 rounded-lg" />
+            </div>
+
+            <!-- Rate -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="text-sm font-semibold text-slate-700">Annual Interest Rate</label>
+                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded" id="rate-badge">7.5 %</span>
+              </div>
+              <div class="relative rounded-lg overflow-hidden border border-slate-200 p-0.5 flex items-center mb-3">
+                <input type="number" id="emi-rate" value="7.5" step="0.1" class="py-2.5 px-3 w-full text-slate-900 text-sm font-semibold bg-transparent" />
+                <span class="pr-3 text-slate-400 font-bold text-sm">%</span>
+              </div>
+              <input type="range" id="emi-rate-range" min="1" max="25" step="0.25" value="7.5" class="w-full accent-blue-600 cursor-pointer h-1.5 bg-slate-100 rounded-lg" />
+            </div>
+
+            <!-- Tenure -->
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <label class="text-sm font-semibold text-slate-700">Loan Tenure</label>
+                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded" id="tenure-badge">5 Years</span>
+              </div>
+              <div class="grid grid-cols-2 gap-3 mb-3">
+                <div class="relative rounded-lg overflow-hidden border border-slate-200 p-0.5 flex items-center">
+                  <input type="number" id="emi-tenure" value="5" class="py-2.5 px-3 w-full text-slate-900 text-sm font-semibold bg-transparent" />
+                </div>
+                <select id="emi-tenure-type" class="p-2.5 bg-transparent border border-slate-200 rounded-lg text-sm text-slate-700 font-semibold select-none">
+                  <option value="years" selected>Years</option>
+                  <option value="months">Months</option>
+                </select>
+              </div>
+              <input type="range" id="emi-tenure-range" min="1" max="30" step="1" value="5" class="w-full accent-blue-600 cursor-pointer h-1.5 bg-slate-100 rounded-lg" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Output section with premium visualization -->
+        <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+          <div>
+            <h2 class="text-xl font-bold text-slate-900 border-b border-slate-50 pb-3 mb-6">Payment Breakdown</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center md:text-left">
+              <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-50/80">
+                <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">MONTHLY EMI</span>
+                <div class="text-2xl font-black text-blue-600 mt-1" id="out-emi">$ 2,003.79</div>
+              </div>
+
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">TOTAL INTEREST</span>
+                <div class="text-xl font-bold text-slate-800 mt-1" id="out-interest">$ 20,227.40</div>
+              </div>
+
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">TOTAL AMOUNT</span>
+                <div class="text-xl font-bold text-slate-800 mt-1" id="out-total">$ 120,227.40</div>
+              </div>
+            </div>
+
+            <!-- Circular SVG Visual representation of Principal vs Interest division -->
+            <div class="flex flex-col md:flex-row items-center justify-around bg-slate-50/60 p-6 rounded-xl border border-slate-50">
+              <div class="relative w-44 h-44 flex items-center justify-center">
+                <!-- SVG Dual arc ring -->
+                <svg width="176" height="176" viewBox="0 0 170 170" class="transform -rotate-90">
+                  <circle cx="85" cy="85" r="70" stroke="#f1f5f9" stroke-width="22" fill="transparent"/>
+                  <!-- Principal Circle (blue) -->
+                  <circle cx="85" cy="85" r="70" stroke="#2563eb" stroke-width="22" fill="transparent" stroke-dasharray="439.8" id="principal-circle"/>
+                  <!-- Interest Circle (orange) -->
+                  <circle cx="85" cy="85" r="70" stroke="#f97316" stroke-width="22" fill="transparent" stroke-dasharray="439.8" stroke-dashoffset="300" id="interest-circle"/>
+                </svg>
+                <!-- Central readout -->
+                <div class="absolute text-center bg-white rounded-full w-24 h-24 shadow flex flex-col justify-center">
+                  <span class="text-xs text-slate-400 font-semibold" id="ratio-badge">83.2%</span>
+                  <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Principal</span>
+                </div>
+              </div>
+
+              <div class="space-y-4 min-w-[180px] mt-6 md:mt-0">
+                <div class="flex items-center space-x-2.5">
+                  <span class="w-4 h-4 bg-blue-600 rounded-md shadow-sm"></span>
+                  <span class="text-xs text-slate-500 font-medium">Principal Loan Sum: <strong class="text-slate-900" id="legend-principal-percent">83.2%</strong></span>
+                </div>
+                <div class="flex items-center space-x-2.5">
+                  <span class="w-4 h-4 bg-orange-500 rounded-md shadow-sm"></span>
+                  <span class="text-xs text-slate-500 font-medium">Interest Margins: <strong class="text-slate-900" id="legend-interest-percent">16.8%</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 text-center text-xs text-slate-400 font-semibold">
+            Estimates only. Formulas are in strict compliance with mathematical norms.
+          </div>
+        </div>
+
+      </section>
+
+      <!-- DETAIL SEO ARTICLE BLOCK (800-1500+ WORDS) -->
+      <section class="prose prose-slate bg-white p-8 rounded-2xl border border-slate-100 max-w-full font-sans text-slate-600 leading-relaxed mb-12">
+        <h2 class="text-2xl font-bold text-slate-950 mb-4">Complete Guide to Equated Monthly Installments (EMI)</h2>
+        <p class="mb-4">
+          When seeking real estate financing, purchase assets, or car loans, debt repayment is structured using structured monthly payments called **Equated Monthly Installments (EMI)**. An EMI represents a consistent, recurring sum paid directly to the financing bank. Over the baseline duration, the borrower completely amortizes both the initial principal value and the accumulated interest. Our SaaS repayment calculator is configured at the canonical domain <a href="http://quickcalcpro.gt.tc/emi-calculator" class="text-blue-600 font-bold hover:underline">http://quickcalcpro.gt.tc/emi-calculator</a> to model these contracts instantly.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">The Mathematical Breakdown of the EMI Equation</h3>
+        <p class="mb-4">
+          Our calculations rely on the standard compounding amortization formula. The equation is represented algebraically as:
+        </p>
+        <div class="bg-slate-50 text-slate-800 font-mono text-xs p-4 rounded-lg my-4 text-center border">
+          EMI = [P x r x (1 + r)^n] / [(1 + r)^n - 1]
+        </div>
+        <p class="mb-4">
+          Let us define each variable:
+        </p>
+        <ul class="list-disc pl-6 mb-6 space-y-1.5 text-sm">
+          <li><strong>P (Principal Loan Sum):</strong> The initial amount borrowed from the bank before fees are factored in.</li>
+          <li><strong>r (Monthly Interest Rate):</strong> The annual rate divided by 12 months, and then divided by 100 to yield a fractional rate.</li>
+          <li><strong>n (Complete Tenure):</strong> The duration parameter represented directly in months (years multiplied by 12).</li>
+        </ul>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">Concrete Valuation Examples</h3>
+        <p class="mb-4">
+          Suppose you secure an EMI contract for a principal value of <strong>$100,000</strong> at an annual rate of <strong>7.5%</strong> over a <strong>5-year term</strong>.
+        </p>
+        <ol class="list-decimal pl-6 mb-6 space-y-1 text-sm">
+          <li>Monthly rate conversion: r = 7.5% / 12 / 100 = 0.00625.</li>
+          <li>Total months: n = 5 x 12 = 60 months.</li>
+          <li>Applying the values: EMI = [100000 x 0.00625 x (1.00625)^60] / [(1.00625)^60 - 1].</li>
+          <li>This resolves to a monthly payment of <strong>$2,003.79</strong>.</li>
+          <li>Across the entire 5 years, the total amount paid equals $120,227.40, of which <strong>$20,227.40</strong> represents interest.</li>
+        </ol>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">Why Interest Splits Shift Over Time (Amortization Schedule)</h3>
+        <p class="mb-4">
+          A common point of confusion is how payments are split between principal and interest. In early months, interest makes up a larger share of each payment. As the principal is paid down, the interest portion decreases, and more of each payment goes toward the principal.
+        </p>
+        <p class="mb-4">
+          Using our web calculator, you can instantly see the exact split. Increasing your monthly payment by even a small amount can significantly reduce total interest costs, saving you thousands over the life of the loan.
+        </p>
+
+        <h3 class="text-xl font-bold text-slate-900 mt-6 mb-3">Benefits of Early Planning with QuickCalcPro</h3>
+        <p class="mb-4">
+          Using our interactive tools, you can easily compare different loan scenarios and adjust variables in real-time. This dynamic modeling helps you find the right balance between a comfortable monthly payment and a reasonable total interest cost before you sign a contract.
+        </p>
+      </section>
+
+      <!-- REAL-TIME INTERNAL NAVIGATION (RELATED TOOLS BAR) -->
+      <section class="bg-white p-6 rounded-2xl border border-slate-100 mb-8">
+        <h3 class="text-base font-bold text-slate-900 mb-4 uppercase tracking-widest text-xs">Explore Related Financial Trackers</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <a href="/loan-calculator" class="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 transition">Loan Calculator</a>
+          <a href="/gst-calculator" class="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 transition">GST Calculator</a>
+          <a href="/percentage-calculator" class="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 transition">Percentage Calculator</a>
+          <a href="/currency-converter" class="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-100 rounded-lg text-xs font-semibold text-slate-700 hover:text-blue-600 transition">Currency Converter</a>
+        </div>
+      </section>
+
+      <!-- BOTTOM SPONSOR AD -->
+      <div class="adsense-placeholder bg-orange-50 border border-dashed border-orange-200 rounded-xl py-6 text-center text-slate-400 text-xs select-none">
+        SPONSORED PLACEMENT AD — READY FOR ADSENSE (emi-bottom-banner)
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-sm pt-12 pb-6 border-t border-slate-800 mt-12 w-full">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center text-white font-bold">
+              <span class="text-lg">+</span>
+            </div>
+            <span class="text-lg font-bold text-white tracking-tight">QuickCalc<span class="text-blue-500">Pro</span></span>
+          </div>
+          <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+            The free SaaS-grade multi-page platform offering optimized responsive mathematical calculators and offline PWA reliability.
+          </p>
+          <div class="text-xs text-blue-400 font-semibold pt-2">
+            Official URL: <a href="http://quickcalcpro.gt.tc/" class="hover:underline">http://quickcalcpro.gt.tc/</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Financial & Health</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/emi-calculator" class="hover:text-blue-400 transition font-semibold">EMI Calculator</a></li>
+            <li><a href="/loan-calculator" class="hover:text-blue-400 transition">Loan Calculator</a></li>
+            <li><a href="/gst-calculator" class="hover:text-blue-400 transition">GST Calculator</a></li>
+            <li><a href="/bmi-calculator" class="hover:text-blue-400 transition">BMI Calculator</a></li>
+            <li><a href="/bmr-calculator" class="hover:text-blue-400 transition">BMR Calculator</a></li>
+            <li><a href="/calorie-calculator" class="hover:text-blue-400 transition">Calorie Calculator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Math & Converters</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/percentage-calculator" class="hover:text-blue-400 transition">Percentage Calculator</a></li>
+            <li><a href="/scientific-calculator" class="hover:text-blue-400 transition">Scientific Calculator</a></li>
+            <li><a href="/currency-converter" class="hover:text-blue-400 transition">Currency Converter</a></li>
+            <li><a href="/unit-converter" class="hover:text-blue-400 transition">Unit Converter</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold uppercase tracking-wider text-xs mb-4">Legal & Map</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="/about" class="hover:text-blue-400 transition">About Us</a></li>
+            <li><a href="/contact" class="hover:text-blue-400 transition">Contact Us</a></li>
+            <li><a href="/privacy-policy" class="hover:text-blue-400 transition">Privacy Policy</a></li>
+            <li><a href="/terms-and-conditions" class="hover:text-blue-400 transition">Terms & Conditions</a></li>
+            <li><a href="/disclaimer" class="hover:text-blue-400 transition">Disclaimer</a></li>
+            <li><a href="/sitemap" class="hover:text-blue-400 transition">HTML Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+        <div>
+          © 2026 QuickCalcPro. All Rights Reserved. General calculations for estimated reference.
+        </div>
+        <div class="flex space-x-6">
+          <a href="http://quickcalcpro.gt.tc/" class="hover:text-blue-400 transition">http://quickcalcpro.gt.tc/</a>
+          <a href="/robots.txt" class="hover:text-blue-400 transition">robots.txt</a>
+          <a href="/sitemap.xml" class="hover:text-blue-400 transition">sitemap.xml</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- CENTRAL JAVASCRIPT HUB & LOCAL EMI SCRIPT -->
+    <script src="/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Elements
+        const amountInput = document.getElementById("emi-amount");
+        const amountRange = document.getElementById("emi-amount-range");
+        const rateInput = document.getElementById("emi-rate");
+        const rateRange = document.getElementById("emi-rate-range");
+        const tenureInput = document.getElementById("emi-tenure");
+        const tenureRange = document.getElementById("emi-tenure-range");
+        const tenureType = document.getElementById("emi-tenure-type");
+
+        const emiBadge = document.getElementById("amount-badge");
+        const rateBadge = document.getElementById("rate-badge");
+        const tenureBadge = document.getElementById("tenure-badge");
+
+        const outEmi = document.getElementById("out-emi");
+        const outInterest = document.getElementById("out-interest");
+        const outTotal = document.getElementById("out-total");
+
+        const principalCircle = document.getElementById("principal-circle");
+        const interestCircle = document.getElementById("interest-circle");
+        const ratioBadge = document.getElementById("ratio-badge");
+        const legendPrincipal = document.getElementById("legend-principal-percent");
+        const legendInterest = document.getElementById("legend-interest-percent");
+
+        function recalculate() {
+          let principal = parseFloat(amountInput.value) || 0;
+          let rate = parseFloat(rateInput.value) || 0;
+          let tenure = parseFloat(tenureInput.value) || 0;
+
+          // Sync badges
+          emiBadge.innerText = "$ " + principal.toLocaleString();
+          rateBadge.innerText = rate + " %";
+          
+          let durationType = tenureType.value;
+          tenureBadge.innerText = tenure + " " + (durationType === "years" ? (tenure === 1 ? "Year" : "Years") : (tenure === 1 ? "Month" : "Months"));
+
+          // Standard limits sanity
+          if (principal <= 0 || rate <= 0 || tenure <= 0) {
+            outEmi.innerText = "$ 0.00";
+            outInterest.innerText = "$ 0.00";
+            outTotal.innerText = "$ 0.00";
+            return;
+          }
+
+          // Convert to monthly parameters
+          let monthlyRate = rate / 12 / 100;
+          let months = durationType === "years" ? tenure * 12 : tenure;
+
+          // EMI calculation
+          let emiVal = (principal * monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+          
+          if (!isFinite(emiVal)) {
+            // handle zero rate or division bugs safely
+            emiVal = principal / months;
+          }
+
+          let totalVal = emiVal * months;
+          let interestVal = totalVal - principal;
+
+          // update output text
+          outEmi.innerText = "$ " + emiVal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          outInterest.innerText = "$ " + interestVal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          outTotal.innerText = "$ " + totalVal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+          // SVG Ring Ratio math: Circle circum = 2 * Math.PI * 70 = ~439.8
+          let principalPercentage = (principal / totalVal) * 100;
+          let interestPercentage = (interestVal / totalVal) * 100;
+
+          legendPrincipal.innerText = principalPercentage.toFixed(1) + "%";
+          legendInterest.innerText = interestPercentage.toFixed(1) + "%";
+          ratioBadge.innerText = principalPercentage.toFixed(1) + "%";
+
+          let perimeter = 2 * Math.PI * 70; // 439.822
+          let principalOffset = perimeter * (1 - principalPercentage / 100);
+          principalCircle.setAttribute("stroke-dashoffset", principalOffset);
+
+          // Rotate interest ring correctly to align after principal arc
+          interestCircle.setAttribute("stroke-dasharray", perimeter);
+          let interestOffset = perimeter * (1 - interestPercentage / 100);
+          interestCircle.setAttribute("stroke-dashoffset", interestOffset);
+          // Set rotation factor to match principal offset boundary
+          interestCircle.style.transform = `rotate(${principalPercentage * 3.6}deg)`;
+          interestCircle.style.transformOrigin = 'center';
+        }
+
+        // Event listener connections
+        function setupSync(input, range) {
+          input.addEventListener("input", () => {
+            range.value = input.value;
+            recalculate();
+          });
+          range.addEventListener("input", () => {
+            input.value = range.value;
+            recalculate();
+          });
+        }
+
+        setupSync(amountInput, amountRange);
+        setupSync(rateInput, rateRange);
+        setupSync(tenureInput, tenureRange);
+        
+        tenureType.addEventListener("change", () => {
+          let type = tenureType.value;
+          if (type === "years") {
+            tenureRange.max = 30;
+            tenureRange.min = 1;
+            tenureInput.value = Math.min(30, Math.ceil(tenureInput.value / 12) || 5);
+            tenureRange.value = tenureInput.value;
+          } else {
+            tenureRange.max = 360;
+            tenureRange.min = 12;
+            tenureInput.value = Math.min(360, tenureInput.value * 12 || 60);
+            tenureRange.value = tenureInput.value;
+          }
+          recalculate();
+        });
+
+        // Trigger initial calculation
+        recalculate();
+      });
+    </script>
+  </body>
+</html>
